@@ -2,7 +2,7 @@
 
 // Be sure to enable query support in your server/bungeecord config! (enable-query setting)
 
-$configServerAddress = 'maxrp.pl'; // your server hostname or ip address
+$configServerAddress = 'epic-server.com'; // your server hostname or ip address
 $configServerPort = 25565; // your server port
 $configServerName = 'MaxMC'; // your server name
 $configServerWebsite = ''; // your server website URL, set to '' if you don't have one
@@ -342,9 +342,6 @@ echo '</head>';
         echo '</div>';
 
         $MinecraftQuery = new MinecraftQuery($configServerAddress, $configServerPort, 3);
-        $MinecraftLobby = new MinecraftQuery($configServerAddress, 25566, 3);
-        $MinecraftSurv = new MinecraftQuery($configServerAddress, 25567, 3);
-        $Minecraftskywars = new MinecraftQuery($configServerAddress, 25568, 3);
         if($MinecraftQuery->getError() != null)
         {
             echo '<div class="container">';
@@ -363,23 +360,6 @@ echo '</head>';
                     echo 'Gracze na serwerze: <strong>'.$MinecraftQuery->getInfo()['Players'].' / '.$MinecraftQuery->getInfo()['MaxPlayers'].'</strong><br />';
                 if($configServerShowVersion && isset($MinecraftQuery->getInfo()['Version']))
                     echo 'Dostępne wersje: <strong>'.$MinecraftQuery->getInfo()['Version'].'</strong><br />';
-                if($configServerShowPlayerCount && isset($MinecraftLobby->getInfo()['Players'], $MinecraftLobby->getInfo()['MaxPlayers']))
-                    echo 'Serwer Lobby: <strong>'.$MinecraftLobby->getInfo()['Players'].' / '.$MinecraftLobby->getInfo()['MaxPlayers'].'</strong><br />';
-                if($configServerShowPlayerCount && isset($MinecraftLobby->getInfo()['Players'], $MinecraftLobby->getInfo()['MaxPlayers']))
-                    echo 'Serwer Survival: <strong>'.$MinecraftSurv->getInfo()['Players'].' / '.$MinecraftSurv->getInfo()['MaxPlayers'].'</strong><br />';
-                if($configServerShowPlayerCount && isset($Minecraftskywars->getInfo()['Players'], $Minecraftskywars->getInfo()['MaxPlayers']))
-                    echo 'Serwer Skywars: <strong>'.$Minecraftskywars->getInfo()['Players'].' / '.$Minecraftskywars->getInfo()['MaxPlayers'].'</strong><br />';
-                if($configServerShowPlugins && isset($MinecraftQuery->getInfo()['Plugins']) && count($MinecraftQuery->getInfo()['Plugins']) > 0)
-                    echo 'Plugins: <strong>'.implode(', ', $MinecraftQuery->getInfo()['Plugins']).'</strong><br />';
-                if($configServerShowMotd && isset($MinecraftQuery->getInfo()['HostNameHTML']))
-                    echo '<br /><div class="pre"><pre>'.$MinecraftQuery->getInfo()['HostNameHTML'].'</pre></div>';
-                if($configServerShowMotd && isset($MinecraftLobby->getInfo()['HostNameHTML']))
-                    echo '<br /><div class="pre"><pre>'.$MinecraftLobby->getInfo()['HostNameHTML'].'</pre></div>';
-                if($configServerShowMotd && isset($MinecraftSurv->getInfo()['HostNameHTML']))
-                    echo '<br /><div class="pre"><pre>'.$MinecraftSurv->getInfo()['HostNameHTML'].'</pre></div>';
-                if($configServerShowMotd && isset($Minecraftskywars->getInfo()['HostNameHTML']))
-                    echo '<br /><div class="pre"><pre>'.$Minecraftskywars->getInfo()['HostNameHTML'].'</pre></div>';
-
             echo '</div>';
 
             if($configServerShowPlayerNames)
