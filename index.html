@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel=icon href="https://avatars.githubusercontent.com/u/62387434?v=4">
+    <title>Kejlo | Portfolio</title>
+</head>
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        background-color: #222222;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        color: #1a1a1a;
+        background-image: url("bg.png");
+        background-repeat: repeat;
+    }
+    
+    .grid-container {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-gap: 10px;
+        margin: 10%;
+    }
+    .grid-item {
+        background-color: #b4b4b4ce;
+        box-shadow: 0.5em 0.5em 10px #2f2f2f;
+        border-radius: 10px;
+        padding: 20px;
+        font-size: 20px;
+        text-align: center;
+    }
+    .grid-item img {
+        width: 5em;
+        height: auto;
+    }
+    button {
+        background-color: #774caf;
+        border: none;
+        color: white;
+        padding: 10px 20px;
+        text-align: center;
+        text-decoration: none;
+        font-size: 16px;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+    button:hover {
+        background-color: #5e3a7a;
+    }
+</style>
+<body>
+    <div class="grid-container">
+        <div class="grid-item">
+            <img src="https://cdn.discordapp.com/avatars/1177309470544633896/66b300ee57f4668b88bef5a467f04a3b.webp" alt="Kejlo" style="border-radius: 50%;">
+            <h1>Endo</h1>
+            <p>Discord Bot</p>
+            <a href="https://epic-server.com"><button>Website</button></a>
+        </div>
+        <div class="grid-item">
+            <img src="./mods-servers.png">
+            <h2>Minecraft Server</h2>
+            <p>IP: epic-server.com</p>
+            <p>Requires Fabric Loader</p>
+            <p>Version: 1.20.1</p>
+            <a href="https://epic-server.com:3030/mods.zip"><button>Download Mods</button></a>
+        </div>
+        <div class="grid-item">
+            <img src="https://avatars.githubusercontent.com/u/62387434?v=4" style="border-radius: 50%;">
+            <h1>Kejlo</h1>
+            <p>GitHub</p>
+            <a href="https://github.com/Kejlo523"><button>Link to My Profile</button></a>
+        </div>
+    </div>
+</body>
+</html>
