@@ -28,6 +28,7 @@
         grid-template-columns: 1fr 1fr 1fr;
         grid-gap: 10px;
         margin: 10%;
+        align-items: start;
     }
     .grid-item {
         background-color: #b4b4b4ce;
@@ -55,6 +56,12 @@
     button:hover {
         background-color: #5e3a7a;
     }
+    .expandable {
+        display: none;
+    }
+    .expand {
+        display: block;
+    }
 </style>
 <body>
     <div class="grid-container">
@@ -67,10 +74,17 @@
         <div class="grid-item">
             <img src="./mods-servers.png">
             <h2>Minecraft Server</h2>
-            <p>IP: epic-server.com</p>
-            <p>Requires Fabric Loader</p>
-            <p>Version: 1.20.1</p>
+            <p id="ip">IP: epic-server.com</p>
             <a href="https://epic-server.com:3030/mods.zip"><button>Download Mods</button></a>
+            <!-- expandable button, when click resize down below -->
+            <button onclick="document.querySelector('.expandable').classList.toggle('expand')">Server Info</button>
+            <div class="expandable">
+                <p id="status">Status: </p>
+                <p id="players">Players: </p>
+                <p id="version">Version: </p>
+                <p id="players_names"></p>
+                <p id="motd">MOTD: </p>
+            </div>
         </div>
         <div class="grid-item">
             <img src="https://avatars.githubusercontent.com/u/62387434?v=4" style="border-radius: 50%;">
@@ -79,5 +93,39 @@
             <a href="https://github.com/Kejlo523"><button>Link to My Profile</button></a>
         </div>
     </div>
+
+<script>
+    // get server status
+    var ip = document.getElementById("ip");
+    var players = document.getElementById("players");
+    var version = document.getElementById("version");
+    var players_names = document.getElementById("players_names");
+    var motd = document.getElementById("motd");
+
+    function fetchData() {
+        var request = new XMLHttpRequest();
+        request.open('GET', 'https://api.mcsrvstat.us/2/epic-server.com', true);
+        request.onload = function () {
+            // Begin accessing JSON data here
+            var data = JSON.parse(this.response);
+            if (request.status >= 200 && request.status < 400) {
+                ip.textContent = data.hostname + ":" + data.port;
+                document.getElementById("status").textContent = "Status: " + (data.online ? "Online" : "Offline");
+                players.textContent = "Players: " + data.players.online + "/" + data.players.max;
+                version.textContent = "Version: " + data.version;
+                players_names.textContent = data.players.list;
+                motd.innerHTML = data.motd.html;
+            } else {
+                console.log('error');
+            }
+        }
+        request.send();
+    }
+
+    fetchData(); // Fetch data initially
+
+    setInterval(fetchData, 2000); // Refresh data every 1 minute
+</script>
+
 </body>
 </html>
